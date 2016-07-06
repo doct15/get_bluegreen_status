@@ -3,7 +3,7 @@
 json_content=$(curl "https://api.distelli.com/bmcgehee/envs/0green/vars?apiToken=9kpkkouvo7ras8221r25velouviebwqw2is9t")
 jcontent=${json_content:10:-3}
 oldIFS=$IFS
-IFS="\},\{"; eval 'pairs=($jcontent)'
+IFS="},{"; eval 'pairs=($jcontent)'
 echo ":$IFS:"
 echo "$jcontent"
 counter=0
@@ -14,3 +14,7 @@ for pair in "${pairs[@]}"; do
   fi
   let counter++
 done
+
+
+test1=$(echo $jscontent | tr "},{" "\n")
+echo $test1
